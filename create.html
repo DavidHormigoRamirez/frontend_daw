@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Estudiante</title>
+    <link href="./bulma.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title is-2">Crear Nuevo Estudiante</h1>
+
+        <!-- Formulario para crear un estudiante -->
+        <form id="create-student-form">
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input class="input" type="text" id="name" required placeholder="Ingrese el nombre del estudiante">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Correo Electrónico</label>
+                <div class="control">
+                    <input class="input" type="email" id="email" required placeholder="Ingrese el correo electrónico del estudiante">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Crear Estudiante</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Enlace para regresar a la lista de estudiantes -->
+        <div class="field">
+            <div class="control">
+                <a href="index.html" class="button is-link">Volver a la lista de Estudiantes</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para manejar el envío del formulario
+        document.getElementById('create-student-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que se recargue la página
+
+            // Obtener los datos del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Enviar los datos al backend
+            // TODO CAMBIAR
+            fetch('CAMBIAR', {  // URL relativa a la API para crear un estudiante
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Si el estudiante se ha creado exitosamente, redirigir a la lista
+                window.location.href = 'index.html';
+            })
+            .catch(error => {
+                console.error('Error al crear el estudiante:', error);
+            });
+        });
+    </script>
+</body>
+</html>

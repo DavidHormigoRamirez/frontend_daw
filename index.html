@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Estudiantes</title>
+    <link href="./bulma.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title is-2">Lista de Estudiantes</h1>
+
+        <!-- Botón para redirigir al formulario de creación de estudiante -->
+        <div class="field">
+            <div class="control">
+                <a href="create.html" class="button is-primary">Añadir Nuevo Estudiante</a>
+            </div>
+        </div>
+
+        <!-- Lista de estudiantes (esto debería llenarse dinámicamente con JavaScript o PHP) -->
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+
+                </tr>
+            </thead>
+            <tbody id="students-list">
+                                <!-- Aquí se agregarán los estudiantes a través de JavaScript -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        // Aquí iría el código para hacer una solicitud GET al backend y llenar la lista de estudiantes
+        // Ejemplo de cómo podrías hacerlo usando fetch:
+        // TODO CAMBIAR
+        fetch('CAMBIAR') // URL de tu API de estudiantes
+            .then(response => response.json())
+            .then(response => {
+                const studentsList = document.getElementById('students-list');
+                response.data.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${student.name}</td>
+                        <td>${student.email}</td>
+
+                    `;
+                    studentsList.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener los estudiantes:', error);
+            });
+    </script>
+</body>
+</html>
