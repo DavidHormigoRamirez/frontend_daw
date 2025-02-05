@@ -41,7 +41,7 @@
             .then(response => response.json())
             .then(response => {
                 const studentsList = document.getElementById('students-list');
-                response.data.forEach(student => {
+                response.forEach(student => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${student.name}</td>
